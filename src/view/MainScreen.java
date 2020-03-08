@@ -14,8 +14,9 @@ public class MainScreen {
 	
 	private JFrame mainFrame;
 	private JPanel panel;
-	private JPanel grid;
+	private Grid grid;
 	private JButton confirm;
+	private JButton cancel;
 	
 	
 	public MainScreen(){
@@ -37,6 +38,12 @@ public class MainScreen {
 		
 			
 		});
+		
+		this.cancel.addActionListener( event -> {
+			
+			
+			
+		});
 	}
 	
 	
@@ -45,19 +52,19 @@ public class MainScreen {
 		
 		//Set Initial frame
 		this.mainFrame = new JFrame("Path Planner");
-		this.mainFrame.setSize(1000, 800);
+		this.mainFrame.setSize(1010, 1000);
 		this.mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.mainFrame.setVisible(true);
 		this.mainFrame.setResizable(false);
 		
 		//Set Initial Panel
 		this.panel = new JPanel();
-		this.grid = new JPanel();
+		this.grid = new Grid();
 		
-		//Set Confirm Button
+		//Set Buttons
 		
 		this.confirm = new JButton("Confirm");
-		
+		this.cancel = new JButton("Cancel");
 		
 		//Add button and panel to JFrame
 		
@@ -75,9 +82,11 @@ public class MainScreen {
 		
 		
 		//Set lower bar and confirmation button
-		lowerBar.setLayout(new GridLayout(1, 3));
+		lowerBar.setLayout(new GridLayout(1, 5));
 		lowerBar.add(new JPanel());
 		lowerBar.add(this.confirm);
+		lowerBar.add(new JPanel());
+		lowerBar.add(this.cancel);
 		lowerBar.add(new JPanel());
 		
 	}
