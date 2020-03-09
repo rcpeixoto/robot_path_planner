@@ -26,8 +26,13 @@ public class Cells extends Component{
 		this.isDestination = false;
 	}
 		
+	public int isSelected2() {
+		return (this.selected?1:0);
+	}
 	
-	public boolean isSelected() {return this.selected;}
+	public boolean isSelected() {
+		return this.selected;
+	}
 	
 	public void drawStart() {
 		JPanel father = (JPanel) this.getParent();
@@ -82,7 +87,18 @@ public class Cells extends Component{
 	}
 	
 	public void select() {
-		this.selected = !this.selected;
+		this.selected = true;
+	}
+	
+	public void unselect() {
+		this.selected = false;
+	}
+	public void unBegin() {
+		this.isBeginnig = false;
+	}
+	
+	public void unDestination() {
+		this.isDestination = false; 
 	}
 	
 	public void setBegin() {

@@ -15,14 +15,18 @@ public class Grid extends JPanel{
 	private final int iterations;
 	private final GridController gridController;
 	
-	Grid(){
+	Grid(GridController gridController){
 		super();
 		this.setLayout(null);
 		this.intervals = 100;
 		this.iterations = 10;
 		this.gridCells = new Cells[this.iterations][this.iterations];
-		this.gridController = new GridController();
+		this.gridController = gridController;
+		this.populateCells();
+	}
 	
+	public Cells[][] getGrid() {
+		return this.gridCells;
 	}
 	
 	
@@ -35,8 +39,13 @@ public class Grid extends JPanel{
 			g.drawLine(0, position, this.getWidth(), position);
 			position += this.intervals;
 		}
-		this.populateCells();
+		
 	}
+	
+	public void resetCounter() {
+		this.gridController.resetCounter();
+	}
+	
 	
 	private void populateCells() {
 		for(int i=0; i < this.iterations; ++i) {
@@ -52,5 +61,11 @@ public class Grid extends JPanel{
 				this.gridCells[i][j] = (Cells) cell;
 			}
 		}
+		System.out.println("Entrou aqui");
 	}
+	
+	public int getIterations() {
+		return this.iterations;
+	}
+	
 }

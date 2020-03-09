@@ -32,6 +32,22 @@ public class GridController implements MouseListener{
 		counter++;
 	}
 	
+	public void resetCounter() {
+		this.counter = 0;
+	}
+	
+	
+	public void calculateShortestRoute(int[][] cells) {
+		
+		//Shows the populated grid.
+		for(int i = 0; i< 12; ++i) {
+			System.out.println(cells[i][0] + "|" + cells[i][1] + "|" + cells[i][2] + 
+					"|" + cells[i][3] + "|" + cells[i][4] + "|" + cells[i][5] + "|"
+					+ cells[i][6] + "|" + cells[i][7] + "|" + cells[i][8] + "|"
+					+ cells[i][9] + "|" + cells[i][10] + "|" + + cells[i][11] + "|");
+		}
+		
+	}
 	
 	@Override
 	public void mouseEntered(MouseEvent e) {
