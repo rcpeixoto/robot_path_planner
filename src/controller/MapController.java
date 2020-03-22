@@ -29,5 +29,9 @@ public class MapController{
 		this.map.setObstacleFiles(file);
 	}
 	
+	public void reset() {
+		map.reset();
+	}
+	
 	
 }

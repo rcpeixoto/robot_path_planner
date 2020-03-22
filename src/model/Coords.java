@@ -4,6 +4,7 @@ public class Coords {
 
 	private int x;
 	private int y;
+	private Double fScore = 0d;
 	
 	public Coords(int x, int y) {
 		this.x = x;
@@ -18,11 +19,20 @@ public class Coords {
 		return this.y;
 	}
 	
+	public void setFscore(Double fscore) {
+		this.fScore = fscore;
+	}
+	
+	public Double getFscore() {
+		return this.fScore;
+	}
+	
+	
 	@Override
 	public boolean equals(Object obj) {
 		if(obj instanceof Coords) {
 			Coords aux = (Coords) obj;
-			return aux.getX() == this.x && aux.getY() == this.y;
+			return (aux.getX() > this.x -2 && aux.getX() < this.x + 2) &&( aux.getY() > this.y - 2 && aux.getY() < this.y + 2);
 		}else {
 			return false;
 		}

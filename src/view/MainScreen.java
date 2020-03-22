@@ -36,13 +36,14 @@ public class MainScreen {
 		});
 		
 		this.cancel.addActionListener( event -> {
-			this.grid.cleanScreen();			
+			this.grid.cleanScreen();
+			this.mapController.reset();
 		});
 		
 		this.load.addActionListener( event -> {
-			this.fc = new JFileChooser("C:\\Users\\Yggdrasil\\desktop");
+			this.fc = new JFileChooser("./");
 			int returnVal = fc.showOpenDialog(this.panel);
-			if(returnVal == fc.APPROVE_OPTION) {
+			if(returnVal == JFileChooser.APPROVE_OPTION) {
 				File file = fc.getSelectedFile();
 				this.mapController.getObstaclesFromFile(file);
 			}
