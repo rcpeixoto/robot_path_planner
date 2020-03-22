@@ -93,10 +93,12 @@ public class MapConfiguration implements Subject{
 	}
 	
 	public <T> void calculatePath() {
+		
+		//Calls method to create trapezoidal shapes in the configuration space
 		Map<String, ArrayList<Line>> verticalLines = this.findTrapezoidals();
 		List<Line> vertical = verticalLines.get("VerticalLines");
-		ArrayList<Line> path = new ArrayList<Line>();
-		
+		//Sort all vertical lines based on x-axis coordinates
+		ArrayList<Line> path = new ArrayList<Line>();	
 		Collections.sort(vertical, (o1, o2) -> {
 			Line line1 = (Line) o1;
 			Line line2 = (Line) o2;
@@ -112,14 +114,15 @@ public class MapConfiguration implements Subject{
 			}
 		});
 		
+		//Creates all midpoints of the vertical lines to create
+		//the paths
 		ArrayList<Coords> midPoints = new ArrayList<>();
-		
 		for(Line line: vertical)			
 			midPoints.add(new Coords(line.getEndoints()[0].getX(),
 					(line.getEndoints()[0].getY() + line.getEndoints()[1].getY())/2));
 		
 
-		
+		//create all the lines connecting the midpoints
 		for(Coords coord: midPoints) 
 			for(Coords coord2: midPoints) 
 				if(!coord.equals(coord2) 
@@ -131,15 +134,17 @@ public class MapConfiguration implements Subject{
 					path.add(new Line(this.init_end[1], coord));
 				}
 		
-		
-		ArrayList<Line> filter = new ArrayList<>();
-		
+		//Filter all connecting lines that intersect
+		//Obstacles
+		ArrayList<Line> filter = new ArrayList<>();	
 		for(Obstacle obs: this.lines.keySet()) 
 			for(Line line: path) 
 				if(obs.isInside(line)) 
 					filter.add(line);
 		
-		
+		//Filter the lines that cross other vertical lines
+		//which the intersection point are different than
+		//the boundaries of the line
 		for(Line auxLine : vertical) {
 			for(Line line : path) {
 				Coords inter = auxLine.isIntersected(line);
@@ -183,6 +188,7 @@ public class MapConfiguration implements Subject{
 		start.setFscore(0d);
 		openSet.add(start);
 		
+		//Start all maps
 		Map<Coords, Coords> cameFrom = new HashMap<>();		
 		Map<Coords, Double> fScore = new HashMap<>();
 		Map<Coords, Double> gScore = new HashMap<>();
@@ -190,6 +196,10 @@ public class MapConfiguration implements Subject{
 		fScore.put(start, (double) start.distance(goal));
 		gScore.put(start,  0d);
 		
+		//Populate the g(n) and f(n) functions with default values
+		//For all nodes, except the start, the default value is infinity
+		//and the g(n) for the start node is 0, and the f(n) default
+		//for the start node is the cartesian distance from start to goal.
 		for(Line line: edges) {
 			Coords aux = line.getEndoints()[0];
 			Coords aux2 = line.getEndoints()[1];
@@ -200,18 +210,20 @@ public class MapConfiguration implements Subject{
 		}
 		
 		while(!openSet.isEmpty()) {
-			
+			//Gets the node with the lowest f(n) available
 			Coords current = openSet.poll();
 			
-			if(current.equals(goal)) {
-				return this.reconstructPath(start, goal, cameFrom);
-			}
+			if(current.equals(goal)) return this.reconstructPath(start, goal, cameFrom);
+			
 			
 			for(Line line: edges) {				
 				if(line.getAdjacent(current) != null) {
+					//verifies for neighbour and update the f(n) of each
 					Coords neighbour = line.getAdjacent(current);
 					Double tentative_gScore = gScore.get(current) + current.distance(neighbour);
+					//Verifies whether the f(n) is lesser then the value already stored
 					if( tentative_gScore < gScore.get(neighbour)) {
+						//Append the the path and update the f(n) value
 						cameFrom.put(neighbour, current);
 						Double fn = tentative_gScore + goal.distance(neighbour);
 						gScore.put(neighbour, tentative_gScore);
@@ -249,7 +261,10 @@ public class MapConfiguration implements Subject{
 		Map<String, ArrayList<Line>> verticalLines = new HashMap<>();
 		ArrayList<Line> lines = new ArrayList();
 		verticalLines.put("VerticalLines", lines);
-	
+		
+		//Creates all vertical lines from the vertex
+		//of all obstacles presented in the configuration
+		//space
 		for(Coords coord: this.coords) {
 			Line up = new Line(coord, new Coords(coord.getX(), 0));
 			Line down = new Line(coord, new Coords(coord.getX(), 750));
@@ -259,7 +274,9 @@ public class MapConfiguration implements Subject{
 			
 			double upDistance = Double.MAX_VALUE;
 			double downDistance = Double.MAX_VALUE;
-			
+			//Gets the lines intersecting other obstacle
+			//or touching the limits of the configuration
+			//from the vertex of each obstacle's vertex
 			for(Obstacle obs: this.lines.keySet()) {	
 				if( obs.intersection(up, coord) != null && 
 						coord.distance(obs.intersection(up, coord)) < upDistance) {
@@ -275,7 +292,7 @@ public class MapConfiguration implements Subject{
 			Line upLine = (upInter == null)? up: new Line(coord, upInter);
 			Line downLine = (downInter == null)? down: new Line(coord, downInter);
 			
-
+			//Lastly, filter all lines that are inside obstacle
 			for(Obstacle obs: this.lines.keySet()) {
 				if(obs.contains(coord)) {
 					if(!(obs.isInside(upLine)) ) 
