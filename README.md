@@ -8,9 +8,9 @@ A partir do grafo usa-se o algoritmo A* para encontrar o menor caminho entre o p
 Antes de executar o código do programa, é necessário criar um arquivo de configuração,na pasta examples, é possível encontrar dois exemplos desses arquivos. 
 No arquivo de configuração é colocado os pontos de partida e chegada, e os obstáculos do mapa. 
 
-Para criar um arquivo de configuração,primeiro é necessário colocar os pontos de início, indicando com a palavra START e na linha abaixo as coordenada x ; y 
-(nesse formato), e com a palavra END o ponto de chegada, seguindo o mesmo formato, e após isso, para definir os obstáculos é necessário utilizar a tag (ObsN) 
-e na próxima linha, os pontos incluídos no mesmo, seguindo esse formato xi ; yi - xf ; yf. Um exemplo de um arquivo está ilustrado abaixo: 
+Para criar um arquivo de configuração,primeiro é necessário colocar a palavra **HEADER**,representando o inicio do arquivo, para indicar coodernadas do ponto de partida é utilizado palavra **START**, e na próxima linha as respectivas coordenadas x ; y 
+(nesse formato), na próxima linha, com a palavra **END** o ponto de chegada, seguindo o mesmo formato explicado anteriormente, após isso, para definir os obstáculos é necessário utilizar a tag (ObsN) 
+e na linha abaixo, os pontos incluídos no obstáculo, seguindo esse formato xi ; yi - xf ; yf. Um exemplo de um arquivo de configuração está ilustrado abaixo: 
 
 ![obstaculos](./images/arquivoConfig.png) 
 
