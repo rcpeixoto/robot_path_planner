@@ -12,7 +12,8 @@ Para criar um arquivo de configuração,primeiro é necessário colocar os ponto
 (nesse formato), e com a palavra END o ponto de chegada, seguindo o mesmo formato, e após isso, para definir os obstáculos é necessário utilizar a tag (ObsN) 
 e na próxima linha, os pontos incluídos no mesmo, seguindo esse formato xi ; yi - xf ; yf. Um exemplo de um arquivo está ilustrado abaixo: 
 
-![Arquivo de obstáculos](./images/arquivo.png) 
+![obstaculos](./images/arquivo.png) 
+
 Depois que o arquivo de configuração for finalizado, salve-o na pasta do projeto.Execute o programa,e a interface irá aparecer na tela.
 
 ![Tela inicial](./images/tela_inicial.png) 
