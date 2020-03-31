@@ -161,12 +161,15 @@ public class MapConfiguration implements Subject{
 		
 		//call the A* algorithm to find shortest path
 		
-		path = this.aStartSearch(this.init_end[0], this.init_end[1], path);
+		ArrayList<Line> shortestPath = this.aStartSearch(this.init_end[0], this.init_end[1], path);
 		
 		Map<String, ArrayList<Line>> totalPath = new HashMap<>();
+		Map<String, ArrayList<Line>> totalPath2 = new HashMap<>();
 		totalPath.put("Path", path);
+		totalPath2.put("ShortestPath", shortestPath);
 		
 		this.updateAll(totalPath);
+		this.updateAll(totalPath2);
 		this.updateAll(verticalLines);
 	}
 	

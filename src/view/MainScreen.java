@@ -20,6 +20,7 @@ public class MainScreen {
 	private JButton confirm;
 	private JButton cancel;
 	private JButton load;
+	private JButton showPath;
 	private MapController mapController;
 	private JFileChooser fc;
 	
@@ -48,6 +49,14 @@ public class MainScreen {
 				this.mapController.getObstaclesFromFile(file);
 			}
 		});
+		this.showPath.addActionListener(event -> {
+			this.grid.showPath();
+			JButton button = (JButton) event.getSource();
+			if(button.getText().equals("Shortest Path: off"))
+				button.setText("Shortest Path: on");
+			else
+				button.setText("Shortest Path: off");
+		});
 	}
 	
 	
@@ -70,7 +79,7 @@ public class MainScreen {
 		this.confirm = new JButton("Confirm");
 		this.cancel = new JButton("Cancel");
 		this.load = new JButton("Load Obstacles");
-		
+		this.showPath = new JButton("Shortest Path: off");
 		//Add button and panel to JFrame
 		
 		this.mainFrame.add(this.panel);
@@ -90,9 +99,12 @@ public class MainScreen {
 		//
 		
 		//Set lower bar and confirmation button
-		lowerBar.setLayout(new GridLayout(1, 7));
+		lowerBar.setLayout(new GridLayout(2, 5));
+		lowerBar.add(new JPanel());
+		lowerBar.add(this.showPath);
 		lowerBar.add(new JPanel());
 		lowerBar.add(this.confirm);
+		lowerBar.add(new JPanel());
 		lowerBar.add(new JPanel());
 		lowerBar.add(this.load);
 		lowerBar.add(new JPanel());

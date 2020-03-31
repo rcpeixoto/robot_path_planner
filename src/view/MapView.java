@@ -16,18 +16,28 @@ import model.Obstacle;
 public class MapView extends JPanel implements Observer{
 	
 	private static final long serialVersionUID = 1L;
+	private boolean showAll;
 	private Map<Obstacle, ArrayList<Line>> lines;
-	private Map<String, ArrayList<Line>> path;
+	private ArrayList<Line> path;
+	private ArrayList<Line> paths;
 	private Map<String, ArrayList<Line>> startEnd;
 	private Map<String, ArrayList<Line>> verticalLines;
 	
 	MapView(MapController gridController){
 		super();
 		this.setLayout(null);
+		this.showAll = true;
 		this.lines = new HashMap<>();
 		this.startEnd = new HashMap<>();
-		this.path = new HashMap<>();
+		this.path = new ArrayList<>();
+		this.paths = new ArrayList<>();
 		this.verticalLines = new HashMap<>();
+	}
+	
+	public void showPath() {
+		this.showAll = !this.showAll;
+		Graphics g = this.getGraphics();
+		this.paintComponent(g);
 	}
 	
 	@Override
@@ -57,14 +67,18 @@ public class MapView extends JPanel implements Observer{
 		
 		
 		g.setColor(Color.RED);
-		for(ArrayList<Line> array: this.path.values()) {
-			for(Line line: array) {
+		if(this.showAll) {
+			for(Line line: this.path) {
+				Coords[] coord = line.getEndoints();	
+				g.drawLine(coord[0].getX(), coord[0].getY(), coord[1].getX(), coord[1].getY());
+			}
+		}else {	
+			for(Line line: this.paths) {
 				Coords[] coord = line.getEndoints();	
 				g.drawLine(coord[0].getX(), coord[0].getY(), coord[1].getX(), coord[1].getY());
 			}
 		}
 		
-
 		if(this.startEnd.get("END/START") != null) {
 			Coords[] coord = this.startEnd.get("END/START").get(0).getEndoints();
 			g.setColor(Color.BLACK);
@@ -86,16 +100,12 @@ public class MapView extends JPanel implements Observer{
 
 		
 		if(((HashMap<String, ArrayList<Line>>)data).get("Path") != null) {
-			this.path.putAll((Map<String, ? extends ArrayList<Line>>) data);
-		}
-
-		
-		if(((HashMap<String, ArrayList<Line>>)data).get("VerticalLines") != null) {
+			this.path = (((Map<String, ? extends ArrayList<Line>>) data).get("Path"));
+		}else if(((HashMap<String, ArrayList<Line>>)data).get("VerticalLines") != null) {
 			this.verticalLines.putAll((Map<String, ? extends ArrayList<Line>>) data);
-		}
-
-		
-		if(((HashMap<String, ArrayList<Line>>)data).get("END/START") != null) {
+		}else if(((HashMap<String, ArrayList<Line>>)data).get("ShortestPath") != null) {
+			this.paths = (((Map<String, ? extends ArrayList<Line>>) data).get("ShortestPath"));
+		}else if(((HashMap<String, ArrayList<Line>>)data).get("END/START") != null) {
 			Coords[] coords = ((HashMap<String, ArrayList<Line>>)data).get("END/START").get(0).getEndoints();
 			this.startEnd.putAll((Map<? extends String, ? extends ArrayList<Line>>) data);	
 		}else{
@@ -109,7 +119,8 @@ public class MapView extends JPanel implements Observer{
 		Graphics g = this.getGraphics();
 		this.lines = new HashMap<>();
 		this.startEnd = new HashMap<>();
-		this.path = new HashMap<>();
+		this.path = new ArrayList<>();
+		this.paths = new ArrayList<>();
 		this.verticalLines = new HashMap<>();
 		super.paintComponent(g);
 	}
