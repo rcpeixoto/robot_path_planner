@@ -26,6 +26,6 @@ Aperte o botão **confirm** para o menor caminho entre o pontos ser calculado e 
 ![Menor caminho](./images/menorCaminho.jpeg) 
 
 Caso o usuário deseje observar todos os caminhos encontrados pelo algoritmo, basta clicar no botão **Shortest Path**, e esse tipo de visualização vai ser ativado, para 
-desativar, clique novamento no botão. Quando o  botãoestiver com a palavra **off**, só irá aparecer o menor caminho, e com a palavra **on** todos os caminhos encontrados. 
+desativar, clique novamento no botão. Quando o  botãoestiver com a palavra **on**, só irá aparecer o menor caminho, e com a palavra **off** todos os caminhos encontrados. 
 
 ![Caminhos](./images/caminhos.jpeg)
