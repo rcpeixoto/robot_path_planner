@@ -16,11 +16,16 @@ e na linha abaixo, os pontos incluídos no obstáculo, seguindo esse formato xi 
 
 Depois que o arquivo de configuração for finalizado, salve-o na pasta do projeto.Execute o programa,e a interface irá aparecer na tela.
 
-![Tela inicial](./images/tela_inicial.png) 
+![Tela inicial](./images/tela_inicial.jpeg) 
 
 Aperte o botão **load obstacles** para escolher o arquivo de obstáculos, assim os mesmos serão renderizados na tela assim, como os pontos de partida(na cor vermelha) 
 e chegada(na cor verde). Caso queira escolher outro arquivo de obstáculos aperte o botão **cancel**, e repita o processo. 
 
-Aperte o botão **confirm** para o caminho ser gerado e apresentado na tela.
+Aperte o botão **confirm** para o menor caminho entre o pontos ser calculado e apresentado na tela.
 
-![Menor caminho](./images/menorCaminho.png) 
+![Menor caminho](./images/menorCaminho.jpeg) 
+
+Caso o usuário deseje observar todos os caminhos encontrados pelo algoritmo, basta clicar no botão **Shortest Path**, e esse tipo de visualização vai ser ativado, para 
+desativar, clique novamento no botão. Quando o  botão estiver com a palavra **on**, só irá aparecer o menor caminho, e com a palavra **off** todos os caminhos encontrados. 
+
+![Caminhos](./images/caminhos.jpeg)
