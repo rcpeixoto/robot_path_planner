@@ -14,7 +14,7 @@ e na linha abaixo, os pontos incluídos no obstáculo, seguindo esse formato xi 
 
 ![obstaculos](./images/arquivoConfig.png) 
 
-Depois que o arquivo de configuração for finalizado, salve-o na pasta do projeto.Execute o programa,e a interface irá aparecer na tela.
+Depois que o arquivo de configuração for finalizado, salve-o na pasta do projeto. Para iniciar a aplicação, execute  o arquivo App.java na pasta app, e a interface irá aparecer na tela.
 
 ![Tela inicial](./images/tela_inicial.jpeg) 
 
