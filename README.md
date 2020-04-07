@@ -15,13 +15,13 @@ projeto. Um exemplo de um arquivo de configuração está ilustrado abaixo:
 
 ![obstaculos](./images/arquivoConfig.png) 
 
-##Como executar o programa
+## Como executar o programa
 
 Para iniciar a aplicação, execute  o arquivo App.java na pasta app ou clique no arquivo executável .jar com o nome Finder, e a interface irá aparecer na tela.
 
 ![Tela inicial](./images/tela_inicial.jpeg) 
 
-##Como utilizar a aplicação
+## Como utilizar a aplicação
 
 Aperte o botão **load obstacles** para escolher o arquivo de obstáculos, assim os mesmos serão renderizados na tela assim, como os pontos de partida(na cor vermelha) 
 e chegada(na cor verde). Caso queira escolher outro arquivo de obstáculos aperte o botão **cancel**, e repita o processo. 
