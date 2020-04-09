@@ -65,7 +65,7 @@ public class MainScreen {
 		
 		//Set Initial frame
 		this.mainFrame = new JFrame("Path Planner");
-		this.mainFrame.setSize(982, 850);
+		this.mainFrame.setSize(982, 750);
 		this.mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.mainFrame.setVisible(true);
 		this.mainFrame.setResizable(false);

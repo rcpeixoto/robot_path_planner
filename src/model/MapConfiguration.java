@@ -270,7 +270,7 @@ public class MapConfiguration implements Subject{
 		//space
 		for(Coords coord: this.coords) {
 			Line up = new Line(coord, new Coords(coord.getX(), 0));
-			Line down = new Line(coord, new Coords(coord.getX(), 750));
+			Line down = new Line(coord, new Coords(coord.getX(), 650));
 			
 			Coords upInter = null;
 			Coords downInter = null;
